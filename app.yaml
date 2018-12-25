@@ -1,0 +1,16 @@
+runtime: go
+env: flex
+
+automatic_scaling:
+  min_num_instances: 1
+
+# GCPのプロジェクトに合わせて記述
+# see https://cloud.google.com/appengine/docs/standard/go/cloud-sql/using-cloud-sql-mysql
+# see https://cloud.google.com/appengine/docs/flexible/go/using-cloud-storage?hl=ja
+
+env_variables:
+  MYSQL_CONNECTION: root:@unix(/cloudsql/[PROJECT_ID]:[REGION]:[CLOUDSQL_INSTANCE_NAME])/[DB_NAME]
+  GCLOUD_STORAGE_BUCKET: [CLOUDSTORAGE_INSTANCE_NAME]
+
+beta_settings:
+  cloud_sql_instances:  [PROJECT_ID]:[REGION]:[CLOUDSQL_INSTANCE_NAME])/[DB_NAME]
